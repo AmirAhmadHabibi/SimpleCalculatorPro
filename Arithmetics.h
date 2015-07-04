@@ -8,7 +8,9 @@
 
 class Arithmetics
 {
-
+public:
+    double calculate(double A,char op, double B);
+    double calculate(long A,char op, long B);
 };
 
 

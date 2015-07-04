@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     GtkBuilder *builder;
     GObject *window;
     GObject *button;
+    GObject *entry;
 
     gtk_init(&argc, &argv);
     builder = gtk_builder_new();
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     //Connect signal handlers to the constructed widgets.
     window = gtk_builder_get_object(builder, "window");
     g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-
+    //numbers
     button = gtk_builder_get_object(builder, "num0");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "num1");
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "num9");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
-
+    //other buttons
     button = gtk_builder_get_object(builder, "point");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "result");
@@ -65,9 +66,12 @@ int main(int argc, char *argv[])
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "clr");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
+    //entry
+    entry= gtk_builder_get_object(builder,"entry");
+    gtk_entry_buffer_set_max_length (gtk_entry_get_buffer ((GtkEntry *) entry), 15);
+
 
     //TODO
-
     gtk_main();
     return 0;
 }

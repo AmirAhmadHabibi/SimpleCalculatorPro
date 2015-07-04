@@ -8,7 +8,8 @@
 
 class Calculator
 {
-
+    double d1,d2;
+    int i1,i2;
 };
 
 
