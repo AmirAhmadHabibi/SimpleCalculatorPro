@@ -77,7 +77,7 @@
             <property name="label" translatable="yes">0</property>
             <property name="name">num0</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -92,7 +92,7 @@
             <property name="label" translatable="yes">.</property>
             <property name="name">point</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -107,7 +107,7 @@
             <property name="label" translatable="yes">=</property>
             <property name="name">result</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -122,7 +122,7 @@
             <property name="label" translatable="yes">+</property>
             <property name="name">add</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -137,7 +137,7 @@
             <property name="label" translatable="yes">1</property>
             <property name="name">num1</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="xalign">0.51999998092651367</property>
           </object>
@@ -153,7 +153,7 @@
             <property name="label" translatable="yes">2</property>
             <property name="name">num2</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -168,7 +168,7 @@
             <property name="label" translatable="yes">3</property>
             <property name="name">num3</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -183,7 +183,7 @@
             <property name="label" translatable="yes">-</property>
             <property name="name">sub</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -198,7 +198,7 @@
             <property name="label" translatable="yes">6</property>
             <property name="name">num6</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -213,7 +213,7 @@
             <property name="label" translatable="yes">5</property>
             <property name="name">num5</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -228,7 +228,7 @@
             <property name="label" translatable="yes">4</property>
             <property name="name">num4</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -243,7 +243,7 @@
             <property name="label" translatable="yes">7</property>
             <property name="name">num7</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -258,7 +258,7 @@
             <property name="label" translatable="yes">8</property>
             <property name="name">num8</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -273,7 +273,7 @@
             <property name="label" translatable="yes">9</property>
             <property name="name">num9</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -288,7 +288,7 @@
             <property name="label" translatable="yes">×</property>
             <property name="name">mul</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -303,7 +303,7 @@
             <property name="label" translatable="yes">   ÷   </property>
             <property name="name">div</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="relief">half</property>
           </object>
@@ -319,7 +319,7 @@
             <property name="label" translatable="yes">   √   </property>
             <property name="name">sqr</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -334,7 +334,7 @@
             <property name="label" translatable="yes">  +/-  </property>
             <property name="name">toggleNP</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
           </object>
           <packing>
@@ -349,7 +349,7 @@
             <property name="label" translatable="yes">   C   </property>
             <property name="name">clr</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">clear</property>
             <property name="margin_top">1</property>
