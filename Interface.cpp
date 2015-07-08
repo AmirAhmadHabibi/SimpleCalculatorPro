@@ -63,29 +63,28 @@ void Interface::connect_signal_handlers_to_widgets()
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
 
     //entry
-    entry= gtk_builder_get_object(builder,"entry");
-    gtk_entry_buffer_set_max_length (gtk_entry_get_buffer ((GtkEntry *) entry), 15);
-    g_signal_connect(entry, "key_press_event", G_CALLBACK (entry_key_pressed),NULL);
+    entry = gtk_builder_get_object(builder, "entry");
+    gtk_entry_buffer_set_max_length(gtk_entry_get_buffer((GtkEntry *) entry), 15);
+    g_signal_connect(entry, "key_press_event", G_CALLBACK(entry_key_pressed), NULL);
 }
 
 void Interface::entry_key_pressed(GtkEntry *entry, GdkEventKey *event, gpointer user_data)
 {
-        char *c = event->string;
-        char d = c[0];
-        if(event->keyval==65288);//TODO
-        Calculator::key_pressed(d);
-        gtk_entry_set_text(entry, (const gchar *) &(Calculator::number));
-        g_print("key pressed\n");//testing
-    }
+    char *c = event->string;
+    if (event->keyval == 65288)
+        c = (char *) "backspace";
+
+    Calculator::key_pressed(c);
+
+    gtk_entry_set_text(entry, (const gchar *) &(Calculator::number));
+}
 
 void Interface::click(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
-    char c;
-    GtkButton* A = GTK_BUTTON(widget);
-    char *label= (char *) gtk_button_get_label(A);
-    cout<<label;
-    g_print(" Clicked\n");//testing
+    GtkButton *A = GTK_BUTTON(widget);
+    char *label = (char *) gtk_button_get_label(A);
 
-    Calculator::key_pressed(*(char *) gtk_button_get_label(A));
+    Calculator::key_pressed(label);
+
     gtk_entry_set_text((GtkEntry *) entry, (const gchar *) &(Calculator::number));
 }

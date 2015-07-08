@@ -10,11 +10,13 @@ using namespace std;
 class Calculator
 {
 private:
-    static double d1,d2;
-    static int i1,i2;
+    static double d1, d2;
+    static int i1, i2;
     static char op;
 public:
     static string number;
-    static void key_pressed(char i);
+
+    static void key_pressed(char *i);
 };
+
 #endif //SIMPLECALCULATORPRO_CALCULATOR_H
