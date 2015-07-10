@@ -16,11 +16,11 @@ void Interface::connect_signal_handlers_to_widgets()
     builder = gtk_builder_new();
     gtk_builder_add_from_file(builder, "/home/amirahmad/ClionProjects/SimpleCalculatorPro/Calc.ui", NULL);
 
-    //Connecting signal handlers to the constructed widgets.
+        //Connecting signal handlers to the constructed widgets.
     window = gtk_builder_get_object(builder, "window");
     g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    //numbers
+        //numbers
     button = gtk_builder_get_object(builder, "num0");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "num1");
@@ -42,7 +42,7 @@ void Interface::connect_signal_handlers_to_widgets()
     button = gtk_builder_get_object(builder, "num9");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
 
-    //other buttons
+        //other buttons
     button = gtk_builder_get_object(builder, "point");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "result");
@@ -62,7 +62,7 @@ void Interface::connect_signal_handlers_to_widgets()
     button = gtk_builder_get_object(builder, "clr");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
 
-    //entry
+        //entry
     entry = gtk_builder_get_object(builder, "entry");
     gtk_entry_buffer_set_max_length(gtk_entry_get_buffer((GtkEntry *) entry), 15);
     g_signal_connect(entry, "key_press_event", G_CALLBACK(entry_key_pressed), NULL);
@@ -70,13 +70,13 @@ void Interface::connect_signal_handlers_to_widgets()
 
 void Interface::entry_key_pressed(GtkEntry *entry, GdkEventKey *event, gpointer user_data)
 {
-    char *c = event->string;
-    if (event->keyval == 65288)
-        c = (char *) "backspace";
-
-    Calculator::key_pressed(c);
-
-    gtk_entry_set_text(entry, (const gchar *) &(Calculator::number));
+//    char *c = event->string;
+//    if (event->keyval == 65288)
+//        c = (char *) "backspace";
+//
+//    Calculator::key_pressed(c);
+//
+//    gtk_entry_set_text(entry, Calculator::num1.c_str());
 }
 
 void Interface::click(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
@@ -86,5 +86,8 @@ void Interface::click(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 
     Calculator::key_pressed(label);
 
-    gtk_entry_set_text((GtkEntry *) entry, (const gchar *) &(Calculator::number));
+    if(Calculator::showing_answer)
+        gtk_entry_set_text((GtkEntry *) entry, Calculator::num2.c_str());
+    else
+        gtk_entry_set_text((GtkEntry *) entry, Calculator::num1.c_str());//TODO: no trailing zeros
 }

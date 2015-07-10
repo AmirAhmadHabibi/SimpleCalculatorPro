@@ -1,17 +1,24 @@
 //
 // Created by amirahmad on 7/4/15.
 //
-
+#include <iostream>
+#include <math.h>
 #include "Arithmetics.h"
 
-double Arithmetics::calculate(double A, char op, double B)
+using namespace std;
+
+double Arithmetics::calculate(double A, char *op, double B)
 {
-    //TODO
+    if (!string("√").compare(op) && B >= 0)
+        return sqrt(B);
+    else if (!string("+").compare(op))
+        return A + B;
+    else if (!string("-").compare(op))
+        return A - B;
+    else if (!string("×").compare(op))
+        return A * B;
+    else if (!string("÷").compare(op) && B != 0)
+        return A / B;
     return 0;
 }
 
-double Arithmetics::calculate(long A, char op, long B)
-{
-    //TODO
-    return 0;
-}

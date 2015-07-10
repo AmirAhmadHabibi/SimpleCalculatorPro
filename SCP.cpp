@@ -1,9 +1,9 @@
-
 #include <gtk/gtk.h>
 #include "Interface.h"
 
 using namespace std;
 
+//TODO: quit
 int main(int argc, char *argv[])
 {
     gtk_init(&argc, &argv);

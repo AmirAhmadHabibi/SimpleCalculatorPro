@@ -9,14 +9,15 @@ using namespace std;
 
 class Calculator
 {
-private:
-    static double d1, d2;
-    static int i1, i2;
-    static char op;
+    static char *op;
 public:
-    static string number;
+    static string num1;
+    static string num2;
 
     static void key_pressed(char *i);
+    static void result();
+
+    static bool showing_answer;
 };
 
 #endif //SIMPLECALCULATORPRO_CALCULATOR_H

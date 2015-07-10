@@ -30,7 +30,7 @@
           <object class="GtkEntry" id="entry">
             <property name="name">entry</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -364,7 +364,6 @@
         </child>
         <child>
           <object class="GtkMenuBar" id="menubar1">
-            <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkMenuItem" id="menuitem1">
