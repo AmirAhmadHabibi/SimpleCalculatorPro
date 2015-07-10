@@ -15,6 +15,7 @@ private:
     static GObject *window;
     static GObject *button;
     static GObject *entry;
+    static GObject *textview;
 
     static void entry_key_pressed(GtkEntry *entry, GdkEventKey *event, gpointer user_data);
     static void click(GtkWidget *widget, GdkEventKey *event, gpointer user_data);

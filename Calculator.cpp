@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Calculator.h"
 #include "Arithmetics.h"
+#include "History.h"
 
 using namespace std;
 
@@ -12,9 +13,20 @@ bool Calculator::showing_answer = false;
 
 void Calculator::key_pressed(char *i)
 {
-
-    //If the key is a digit or a point concatenate it with num1
-    if ((('0' <= i[0] && i[0] <= '9') || i[0] == '.') && num1.length() < 16)
+    //Clean key
+    if (!string("C").compare(i))
+    {
+        num2 = "";
+        num1 = "";
+        showing_answer = false;
+    }
+        //Result key
+    else if (!string("=").compare(i) || i[0] == 10)
+    {
+        result();
+    }
+        //If the key is a digit or a point concatenate it with num1
+    else if ((('0' <= i[0] && i[0] <= '9') || i[0] == '.') && num1.length() < 16)
     {
         if (showing_answer)
         {
@@ -27,71 +39,58 @@ void Calculator::key_pressed(char *i)
 
         //backspace
     else if (!string("backspace").compare(i) && num1.length() > 0)
-        num1 = num1.substr(0, num1.length() - 1);
+    {
+        if (showing_answer)
+        {
+            num1 = "";
+            num2 = "";
+            showing_answer = false;
+        }
+        else
+            num1 = num1.substr(0, num1.length() - 1);
+    }
+    else
+    {
+        if (showing_answer)
+        {
+            num1 = string(num2);
+            num2 = "";
+            showing_answer = false;
+        }
 
         //Toggle positive or negative
-    else if (!string("+/-").compare(i))
-    {
-        if (showing_answer)
+        if (!string("+/-").compare(i))
         {
-            num1 = string(num2);
-            num2="";
-            showing_answer = false;
+            if (num1[0] == '-')
+                num1 = num1.substr(1, num1.length() - 1);
+            else
+                num1 = "-" + num1;
         }
-        if (num1[0] == '-')
-            num1 = num1.substr(1, num1.length() - 1);
-        else
-            num1 = "-" + num1;
-    }
 
-        //If the key is a unary operation
-    else if (!string("√").compare(i))
-    {
-        if (showing_answer)
+            //If the key is a unary operation
+        else if (!string("√").compare(i))
         {
-            num1 = string(num2);
-            num2="";
-            showing_answer = false;
-        }
-        //First check if there was another operation going on before
-        //and if so, calculate the result and perform the new operation on that result
-        if (num2.length() != 0)
+            //First check if there was another operation going on before
+            //and if so, calculate the result and perform the new operation on that result
+            if (num2.length() != 0)
+                result();
+            op = i;
             result();
-        op = i;
-        result();
-    }
-
-        //If the key is a binary operation
-    else if (!string("+").compare(i) || !string("-").compare(i) || !string("×").compare(i) || !string("÷").compare(i))
-    {
-        if (showing_answer)
-        {
-            num1 = string(num2);
-            num2="";
-            showing_answer = false;
         }
-        //First check if there was another operation going on before
-        //and if so, calculate the result and set that result as the first operand of the new operation
-        if (num2.length() != 0)
-            result();
-        op = i;
-        num2 = string(num1);
-        num1 = "";
-    }
 
-        //Clean key
-    else if (!string("C").compare(i))
-    {
-        num2 = "";
-        num1 = "";
-        showing_answer = false;
+            //If the key is a binary operation
+        else if (!string("+").compare(i) || !string("-").compare(i) || !string("×").compare(i) ||
+                 !string("÷").compare(i))
+        {
+            //First check if there was another operation going on before
+            //and if so, calculate the result and set that result as the first operand of the new operation
+            if (num2.length() != 0)
+                result();
+            op = i;
+            num2 = string(num1);
+            num1 = "";
+        }
     }
-        //Result key
-    else if (!string("=").compare(i) || i[0] == 10)
-    {
-        result();
-    }
-
 }
 
 
@@ -113,9 +112,10 @@ void Calculator::result()
         n2 = 0;
     }
     double ans = Arithmetics::calculate(n2, op, n1);
-    cout << n1 << " " << n2 << "=" << ans << endl;
+//    cout << n1 << " " << n2 << "=" << ans << endl;
     num1 = to_string(n1);
     num2 = to_string(ans);
     showing_answer = true;
-    //TODO: add to history
+    string operation = to_string(n2) + op + to_string(n1) + "=" + to_string(ans);
+    History::add_to_history(operation);
 }

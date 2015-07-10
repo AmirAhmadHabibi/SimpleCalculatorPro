@@ -12,17 +12,12 @@ using namespace std;
 
 class History
 {
-private:
-    string history;
 
 public:
-    History();
-    string getHistory();
+    static void add_to_history(string s);
+    static void write_in_file();
 
-protected:
-    void add_to_history(string s);
-    void write_in_file();
-
+    static string history;
 };
 
 

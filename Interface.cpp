@@ -3,11 +3,14 @@
 //
 
 #include "Interface.h"
+#include "History.h"
 
 GtkBuilder *Interface::builder;
 GObject *Interface::window;
 GObject *Interface::button;
 GObject *Interface::entry;
+GObject *Interface::textview;
+
 
 void Interface::connect_signal_handlers_to_widgets()
 {
@@ -16,11 +19,13 @@ void Interface::connect_signal_handlers_to_widgets()
     builder = gtk_builder_new();
     gtk_builder_add_from_file(builder, "/home/amirahmad/ClionProjects/SimpleCalculatorPro/Calc.ui", NULL);
 
-        //Connecting signal handlers to the constructed widgets.
+    //Connecting signal handlers to the constructed widgets.
     window = gtk_builder_get_object(builder, "window");
     g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-        //numbers
+    textview = gtk_builder_get_object(builder, "history");
+
+    //numbers
     button = gtk_builder_get_object(builder, "num0");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "num1");
@@ -42,7 +47,7 @@ void Interface::connect_signal_handlers_to_widgets()
     button = gtk_builder_get_object(builder, "num9");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
 
-        //other buttons
+    //other buttons
     button = gtk_builder_get_object(builder, "point");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
     button = gtk_builder_get_object(builder, "result");
@@ -62,10 +67,26 @@ void Interface::connect_signal_handlers_to_widgets()
     button = gtk_builder_get_object(builder, "clr");
     g_signal_connect (button, "clicked", G_CALLBACK(click), NULL);
 
-        //entry
+    //entry
     entry = gtk_builder_get_object(builder, "entry");
     gtk_entry_buffer_set_max_length(gtk_entry_get_buffer((GtkEntry *) entry), 15);
     g_signal_connect(entry, "key_press_event", G_CALLBACK(entry_key_pressed), NULL);
+}
+
+void Interface::click(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+{
+    GtkButton *A = GTK_BUTTON(widget);
+    char *label = (char *) gtk_button_get_label(A);
+
+    Calculator::key_pressed(label);
+
+    if (Calculator::showing_answer)
+        gtk_entry_set_text((GtkEntry *) entry, Calculator::num2.c_str());
+    else
+        gtk_entry_set_text((GtkEntry *) entry, Calculator::num1.c_str());//TODO: no trailing zeros
+
+     gtk_text_buffer_set_text(gtk_text_view_get_buffer((GtkTextView *) textview), History::history.c_str(),
+                              (gint) History::history.length());
 }
 
 void Interface::entry_key_pressed(GtkEntry *entry, GdkEventKey *event, gpointer user_data)
@@ -77,17 +98,4 @@ void Interface::entry_key_pressed(GtkEntry *entry, GdkEventKey *event, gpointer 
 //    Calculator::key_pressed(c);
 //
 //    gtk_entry_set_text(entry, Calculator::num1.c_str());
-}
-
-void Interface::click(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
-{
-    GtkButton *A = GTK_BUTTON(widget);
-    char *label = (char *) gtk_button_get_label(A);
-
-    Calculator::key_pressed(label);
-
-    if(Calculator::showing_answer)
-        gtk_entry_set_text((GtkEntry *) entry, Calculator::num2.c_str());
-    else
-        gtk_entry_set_text((GtkEntry *) entry, Calculator::num1.c_str());//TODO: no trailing zeros
 }
